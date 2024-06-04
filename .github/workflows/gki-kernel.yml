@@ -237,7 +237,7 @@ jobs:
           path: ./output/*
           
       - name: Compress Common Files
-        run: tar -czvf ${{ inputs.version_name }}.tar.gz common/
+        run: tar -czvf ${{ inputs.version_name }}.tar.gz $COMMON_ROOT
 
       - name: Upload Common Tarball
         uses: actions/upload-artifact@v4
