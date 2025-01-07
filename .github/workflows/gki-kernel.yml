@@ -204,6 +204,17 @@ jobs:
           cd common/ && git add -A && git commit -a -m "Add KernelSU"
           repo status
 
+      - name: Compress Common Files
+        working-directory: android-kernel
+        run: |
+          tar -czvf ${{ inputs.version_name }}.tar.gz common
+
+      - name: Upload Common Tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.version_name }}.tar.gz
+          path: android-kernel/${{ inputs.version_name }}.tar.gz 
+
       - name: Build Kernel/LKM
         working-directory: android-kernel
         run: |
